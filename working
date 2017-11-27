@@ -1,0 +1,20 @@
+; constants 
+(define WIDTH  100)
+(define HEIGHT 400)
+(define TRAJECTORY 50)
+(define MTSCN  (underlay/align "left" "bottom"
+                           (rectangle WIDTH HEIGHT "solid" "blue")                         
+                           (rectangle WIDTH 10 "solid" "red")))
+(define ROCKET . )
+(define ROCKET-CENTER-TO-TOP
+  (- HEIGHT (/ (image-height ROCKET) 1.5)))
+ 
+; functions
+(define (picture-of-rocket.v5 h)
+  (cond
+    [(<= h ROCKET-CENTER-TO-TOP)
+     (place-image ROCKET TRAJECTORY h MTSCN)]
+    [(> h ROCKET-CENTER-TO-TOP)
+     (place-image ROCKET TRAJECTORY ROCKET-CENTER-TO-TOP MTSCN)]))  
+
+(animate picture-of-rocket.v5)
